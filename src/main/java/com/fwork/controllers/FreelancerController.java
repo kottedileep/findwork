@@ -4,12 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,14 +27,6 @@ public ResponseEntity<List<Freelancer>> allFreelancers(){
 	HttpHeaders headers=new HttpHeaders();
 	headers.add("desc", "Getting All Freelancers list");
 	return ResponseEntity.ok().headers(headers).body(freelancerList);
-}
-
-@PostMapping("/addfreelancer")
-public ResponseEntity<Freelancer>  addFreelance(@RequestBody Freelancer freelance) {
-	Freelancer user= freelancerservice.addFreelancer(freelance);
-	 HttpHeaders headers=new HttpHeaders();
-	 headers.add("desc", "Freelancer Added successfully");
-	 return ResponseEntity.status(HttpStatus.ACCEPTED).headers(headers).body(user);
 }
 
 @GetMapping("/id/{id}")

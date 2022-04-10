@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.fwork.model.Freelancer;
 @Repository
 public interface FreelancerRepository extends MongoRepository<Freelancer,String> {
+    @Query("{'emailId':?0}")
+    Freelancer findByEmailId(String email);
 @Query("{'firstName':{'$regex': /?0/,'$options':'i'}}")
 List<Freelancer> findByFirstName(String name);
 @Query("{'skills':{$in:?0}}")
