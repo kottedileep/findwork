@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+HOST=localhost
+
+while getopts "dnph:f:" opt; do
+  case $opt in
+    h)
+      HOST=$OPTARG
+      ;;
+    d)
+      PROFILES="${PROFILES},debug"
+      REMOTEDEBUG="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=5005,suspend=n"
+      ;;
+    \?)
+      echo "USAGE: $0 [-n = no flink] [-h HOST] [-f FLINK HOST] [-p = prod mode]"
+      exit 1
+      ;;
+  esac
+done
+
+java -jar target/spring-fwork-*.jar \
+  --spring.data.mongodb.uri=mongodb://$HOST:27017  \
+  --spring.data.mongodb.database=FindWork \
