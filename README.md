@@ -4,7 +4,9 @@
   
   docker build -t  findwork/build-image
 
-* find the docker image by doing docker images
+* find the docker image by doing 
+
+* docker images
 
 * Next Run the Docker Image 
 
